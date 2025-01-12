@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reaction Speed Test</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <button class="theme-toggle" id="themeToggle">🌓</button>
+    <div id="app">
+        <!-- Start Screen -->
+        <div id="startScreen" class="screen active">
+            <div class="card">
+                <h1>Test Your Reactions</h1>
+                <p>Click the shapes as quickly as you can when they turn green. Complete 5 attempts to see your average time.</p>
+                <button class="btn" id="startBtn">Start Test</button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="gameScreen" class="screen">
+            <h1>Reaction Test</h1>
+            <p class="attempts">Attempt <span id="currentAttempt">1</span>/5</p>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-label">Last Time</div>
+                    <div class="stat-value" id="lastTime">0.000s</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Best Time</div>
+                    <div class="stat-value" id="bestTime">0.000s</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Average</div>
+                    <div class="stat-value" id="avgTime">0.000s</div>
+                </div>
+            </div>
+            <div onclick="gameHandler.handleClick()" id="box"></div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="screen">
+            <div class="card">
+                <h1>Your Results</h1>
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-label">Final Average</div>
+                        <div class="stat-value" id="finalAverage">0.000s</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Best Time</div>
+                        <div class="stat-value" id="finalBest">0.000s</div>
+                    </div>
+                </div>
+                <button class="btn" id="retryBtn">Try Again</button>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/gameHandler.js"></script>
+</body>
+</html>
