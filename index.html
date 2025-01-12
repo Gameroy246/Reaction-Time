@@ -4,10 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reaction Speed Test</title>
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Theme toggle button -->
     <button class="theme-toggle" id="themeToggle">🌓</button>
+
     <div id="app">
         <!-- Start Screen -->
         <div id="startScreen" class="screen active">
@@ -36,7 +38,7 @@
                     <div class="stat-value" id="avgTime">0.000s</div>
                 </div>
             </div>
-            <div onclick="gameHandler.handleClick()" id="box"></div>
+            <div id="box"></div>
         </div>
 
         <!-- Results Screen -->
@@ -57,6 +59,7 @@
             </div>
         </div>
     </div>
-    <script src="scripts/gameHandler.js"></script>
+
+    <script src="gameHandler.js"></script>
 </body>
 </html>
