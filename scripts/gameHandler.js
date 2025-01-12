@@ -1,15 +1,18 @@
 class GameHandler {
     constructor() {
+        // Game configuration
         this.attemptLimit = 5;
         this.currentAttempt = 0;
         this.times = [];
         this.timeout = null;
         this.isWaiting = true;
 
+        // Initialize UI elements and listeners
         this.initializeElements();
         this.setupEventListeners();
     }
 
+    // Cache UI elements
     initializeElements() {
         this.screens = {
             start: document.getElementById('startScreen'),
@@ -28,6 +31,7 @@ class GameHandler {
         };
     }
 
+    // Add event listeners
     setupEventListeners() {
         document.getElementById('startBtn').addEventListener('click', () => this.startGame());
         document.getElementById('retryBtn').addEventListener('click', () => this.startGame());
@@ -35,12 +39,14 @@ class GameHandler {
         this.box.addEventListener('click', () => this.handleClick());
     }
 
+    // Change the active screen
     showScreen(screenName) {
-        for (const screen of Object.values(this.screens)) {
+        Object.values(this.screens).forEach(screen => {
             screen.classList.toggle('active', screen === this.screens[screenName]);
-        }
+        });
     }
 
+    // Start the game
     startGame() {
         this.currentAttempt = 0;
         this.times = [];
@@ -48,19 +54,17 @@ class GameHandler {
         this.startNewRound();
     }
 
+    // Manage rounds
     startNewRound() {
         if (this.currentAttempt >= this.attemptLimit) {
             this.showResults();
             return;
         }
-
         this.currentAttemptDisplay.textContent = this.currentAttempt + 1;
         this.resetBox();
         this.setWaitingState();
-
         const delay = Math.random() * 2000 + 1000;
         setTimeout(() => this.setReadyState(), delay);
-
         this.timeout = setTimeout(() => this.handleTimeout(), 10000);
     }
 
@@ -69,7 +73,6 @@ class GameHandler {
         const top = Math.random() * (400 - size);
         const left = Math.random() * (600 - size);
         const isCircle = Math.random() > 0.5;
-
         Object.assign(this.box.style, {
             width: `${size}px`,
             height: `${size}px`,
@@ -126,7 +129,6 @@ class GameHandler {
         this.displays.lastTime.textContent = `${time.toFixed(3)}s`;
         const bestTime = Math.min(...this.times);
         const avgTime = this.times.reduce((a, b) => a + b, 0) / this.times.length;
-
         this.displays.bestTime.textContent = `${bestTime.toFixed(3)}s`;
         this.displays.avgTime.textContent = `${avgTime.toFixed(3)}s`;
     }
@@ -134,7 +136,6 @@ class GameHandler {
     showResults() {
         const avgTime = this.times.reduce((a, b) => a + b, 0) / this.times.length;
         const bestTime = Math.min(...this.times);
-
         this.displays.finalAverage.textContent = `${avgTime.toFixed(3)}s`;
         this.displays.finalBest.textContent = `${bestTime.toFixed(3)}s`;
         this.showScreen('results');
@@ -142,3 +143,4 @@ class GameHandler {
 }
 
 const gameHandler = new GameHandler();
+
